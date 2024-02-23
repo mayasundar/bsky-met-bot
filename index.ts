@@ -10,7 +10,7 @@ const agent = new BskyAgent({
 });
 
 await agent.login({
-  identifier: process.env.BSKY_USERNAME!,
+  identifier: process.env.BSKY_IDENTIFIER!,
   password: process.env.BSKY_PASSWORD!,
 });
 
