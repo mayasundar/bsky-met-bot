@@ -1,0 +1,32 @@
+name: 'bsky-met-bot post image'
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/30 * * * *"
+
+jobs:
+  post:
+    name: post
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Install TypeScript and ts-node
+        run: npm install -g typescript ts-node
+
+      - name: Send post
+        env: 
+          BSKY_IDENTIFIER: ${{ secrets.BSKY_USERNAME }}
+          BSKY_PASSWORD: ${{ secrets.BSKY_PASSWORD }}
+        run: ts-node-esm index.ts  
