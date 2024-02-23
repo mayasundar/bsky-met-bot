@@ -30,6 +30,6 @@ jobs:
 
       - name: Send post
         env: 
-          BSKY_IDENTIFIER: ${{ secrets.BSKY_USERNAME }}
+          BSKY_IDENTIFIER: ${{ secrets.BSKY_IDENTIFIER }}
           BSKY_PASSWORD: ${{ secrets.BSKY_PASSWORD }}
         run: node dist/index.js  
