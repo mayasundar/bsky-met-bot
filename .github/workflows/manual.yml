@@ -24,9 +24,12 @@ jobs:
 
       - name: Install TypeScript and ts-node
         run: npm install -g typescript ts-node
+        
+      - name: Compile TypeScript
+        run: npx tsc
 
       - name: Send post
         env: 
           BSKY_IDENTIFIER: ${{ secrets.BSKY_USERNAME }}
           BSKY_PASSWORD: ${{ secrets.BSKY_PASSWORD }}
-        run: npx ts-node index.ts  
+        run: node dist/index.js  
