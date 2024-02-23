@@ -29,4 +29,4 @@ jobs:
         env: 
           BSKY_IDENTIFIER: ${{ secrets.BSKY_USERNAME }}
           BSKY_PASSWORD: ${{ secrets.BSKY_PASSWORD }}
-        run: npm run start  
+        run: npx ts-node index.ts  
