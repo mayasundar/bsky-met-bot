@@ -2,7 +2,7 @@ name: 'bsky-met-bot post image'
 
 on:
   workflow_dispatch:
-  schedule:
+  # schedule:
     # - cron: "*/30 * * * *"
 
 jobs:
