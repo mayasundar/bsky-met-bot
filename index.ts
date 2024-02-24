@@ -14,7 +14,7 @@ await agent.login({
   password: process.env.BSKY_PASSWORD!,
 });
 
-const POLLING_INTERVAL= 1800000;
+// const POLLING_INTERVAL= 1800000;
 const API_ENDPOINT = 'https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&q=painting';
 const POSTED = 'posted.txt'
 async function getImg(): Promise<void>{
@@ -72,6 +72,6 @@ async function getImg(): Promise<void>{
   } catch (error) {
     console.error('Error fetching data:', error);
   }
-  setTimeout(getImg, POLLING_INTERVAL);
+  // setTimeout(getImg, POLLING_INTERVAL);
 }
 getImg();
