@@ -28,16 +28,17 @@ jobs:
       - name: Compile TypeScript
         run: npx tsc --outDir dist
 
-      - name: Send post
-        env: 
+      - name: Generate randomID and Post
+        id: set_random_id_and_post
+        env:
           BSKY_IDENTIFIER: ${{ secrets.BSKY_IDENTIFIER }}
           BSKY_PASSWORD: ${{ secrets.BSKY_PASSWORD }}
         run: |
           randomID=$(node dist/index.js)
-          echo "::set-env name=RANDOM_ID::$randomID"
+          echo "::set-output name=random_id::$randomID"
           node dist/index.js
 
       - name: Add randomID to POSTED file
-        run: echo $RANDOM_ID >> POSTED
+        run: echo ${{ steps.set_random_id_and_post.outputs.random_id }} >> POSTED
         shell: bash
-        if: success() && steps.send_post.outputs.blob_id != ''
+        if: success() && steps.set_random_id_and_post.outputs.random_id != '' 
