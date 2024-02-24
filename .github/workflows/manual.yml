@@ -33,3 +33,11 @@ jobs:
           BSKY_IDENTIFIER: ${{ secrets.BSKY_IDENTIFIER }}
           BSKY_PASSWORD: ${{ secrets.BSKY_PASSWORD }}
         run: node dist/index.js  
+          randomID=$(node dist/index.js)
+          echo "::set-env name=RANDOM_ID::$randomID"
+          echo $randomID
+
+      - name: Add randomID to POSTED file
+        run: echo $RANDOM_ID >> POSTED
+        shell: bash
+        if: success() && steps.send_post.outputs.blob_id != ''
