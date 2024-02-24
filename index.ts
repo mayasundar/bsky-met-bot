@@ -26,7 +26,7 @@ async function getImg(): Promise<void>{
       const postedIDs = new Set(fs.readFileSync(POSTED, 'utf8').split('\n'));      
       const randomIndex = Math.floor(Math.random() * data.objectIDs.length);
       const randomID = data.objectIDs[randomIndex];
-      console.log(randomID);
+      console.log('::set-output name=random_id::' + randomID);
       if (!postedIDs.has(randomID.toString())) {
         // fetch object response (has media, artist + art data)
         const objResponse = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${randomID}`);
