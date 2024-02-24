@@ -34,7 +34,7 @@ async function getImg(): Promise<void>{
           const objData = await objResponse.json();
           const {primaryImageSmall, artistDisplayName, title, medium, objectDate, objectURL} = objData;
           // don't allow unknown/anonymous artists, or objects with no small image
-          if (primaryImageSmall && primaryImageSmall !== "" && artistDisplayName && artistDisplayName !== "" && objectDate !== "" && medium !== "" && title !== ""  && artistDisplayName !== "Anonymous" && artistDisplayName !== "Unknown") {
+          if (primaryImageSmall && primaryImageSmall !== "" && artistDisplayName && artistDisplayName !== "" && objectDate !== "" && medium !== "" && title !== ""  && artistDisplayName !== "Anonymous" && artistDisplayName !== "Unknown" && artistDisplayName !== "Unidentified artist") {
             const postDescription = `${artistDisplayName}, ${title}, ${medium}, ${objectDate}\n`;
               
             // convert image to blob
