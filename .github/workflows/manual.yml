@@ -2,8 +2,8 @@ name: 'bsky-met-bot post image'
 
 on:
   workflow_dispatch:
-   schedule:
-     - cron: "*/30 * * * *"
+  schedule:
+    - cron: "*/30 * * * *"
 
 jobs:
   post:
@@ -28,17 +28,8 @@ jobs:
       - name: Compile TypeScript
         run: npx tsc --outDir dist
 
-      - name: Generate randomID and Post
-        id: set_random_id_and_post
-        env:
+      - name: Send post
+        env: 
           BSKY_IDENTIFIER: ${{ secrets.BSKY_IDENTIFIER }}
           BSKY_PASSWORD: ${{ secrets.BSKY_PASSWORD }}
-        run: |
-          randomID=$(node dist/index.js)
-          echo "::set-output name=random_id::$randomID"
-          node dist/index.js
-
-      - name: Add randomID to POSTED file
-        run: echo ${{ steps.set_random_id_and_post.outputs.random_id }} >> POSTED
-        shell: bash
-        if: success() && steps.set_random_id_and_post.outputs.random_id != '' 
+        run: node dist/index.js  
